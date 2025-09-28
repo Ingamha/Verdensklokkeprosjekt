@@ -1,11 +1,11 @@
 function updateTime() {
-  let losAngelesElement = document.querySelector("#los-angeles");
-  let losAngelesDateElement = losAngelesElement.querySelector(".date");
-  let losAngelesTimeElement = losAngelesElement.querySelector(".time");
-  let losAngelesTime = moment().tz("America/Los_Angeles");
+  let sanFransiscoElement = document.querySelector("#san_fransisco");
+  let sanFransiscoDateElement = sanFransiscoElement.querySelector(".date");
+  let sanFransiscoTimeElement = sanFransiscoElement.querySelector(".time");
+  let sanFransiscoTime = moment().tz("America/San_Fransisco");
 
-  losAngelesDateElement.innerHTML = losAngelesTime.format("MMMM Do YYYY");
-  losAngelesTimeElement.innerHTML = losAngelesTime.format(
+  sanFransiscoDateElement.innerHTML = sanFransiscoTime.format("MMMM Do YYYY");
+  sanFransiscoTimeElement.innerHTML = sanFransiscoTime.format(
     "hh:mm:ss [<small>]A[</small>]"
   );
 
@@ -22,6 +22,9 @@ function updateTime() {
 
 function updateCity(event) {
   let cityTimeZone = event.target.value;
+  if (cityTimeZone === "current") {
+    cityTimeZone = moment.tz.guess();
+  }
   let cityName = cityTimeZone.replace("_", " ").split("/")[1];
   let cityTime = moment().tz(cityTimeZone);
   let citiesElement = document.querySelector("#cities");
